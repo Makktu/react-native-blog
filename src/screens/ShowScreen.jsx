@@ -40,7 +40,11 @@ ShowScreen.navigationOptions = ({ navigation }) => {
           >
             EDIT
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Edit', { id: navigation.getParam('id') })
+            }
+          >
             <Entypo name='edit' size={30} color='white' />
           </TouchableOpacity>
         </View>

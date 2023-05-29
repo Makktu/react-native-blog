@@ -15,6 +15,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ShowScreen from './ShowScreen';
 
+const randomNumber = () => {
+  return Math.floor(Math.random() * 99999);
+};
+
 const IndexScreen = ({ navigation }) => {
   const { state, deleteBlogPost } = useContext(Context);
   return (
@@ -43,7 +47,9 @@ const IndexScreen = ({ navigation }) => {
         )}
         <FlatList
           data={state}
-          keyExtractor={(blogPost) => blogPost.id}
+          keyExtractor={(blogPost) => {
+            blogPost.id ? blogPost.id : (blogPost.id = randomNumber());
+          }}
           renderItem={({ item }) => {
             return (
               <>
