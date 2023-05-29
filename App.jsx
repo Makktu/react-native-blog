@@ -3,17 +3,20 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import COLORS from './src/styles/COLORS';
 import IndexScreen from './src/screens/IndexScreen';
-
-import { BlogProvider } from './src/context/BlogContext';
+import ShowScreen from './src/screens/ShowScreen';
+import CreateScreen from './src/screens/CreateScreen';
+import { Provider } from './src/context/BlogContext';
 
 const navigator = createStackNavigator(
   {
     Index: IndexScreen,
+    Show: ShowScreen,
+    Create: CreateScreen,
   },
   {
     initialRouteName: 'Index',
     defaultNavigationOptions: {
-      title: 'blog',
+      title: 'Joe Blogs',
       headerStyle: {
         backgroundColor: COLORS.bgCol,
       },
@@ -29,8 +32,8 @@ const App = createAppContainer(navigator);
 
 export default () => {
   return (
-    <BlogProvider>
+    <Provider>
       <App />
-    </BlogProvider>
+    </Provider>
   );
 };
