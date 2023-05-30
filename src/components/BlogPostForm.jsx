@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import COLORS from '../styles/COLORS';
 
-const BlogPostForm = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const BlogPostForm = ({ onSubmit, initialValues, navigation }) => {
+  const [title, setTitle] = useState(initialValues.title);
+  const [content, setContent] = useState(initialValues.content);
   return (
     <View style={styles.background}>
       <Text style={styles.textStyle}>Enter Title:</Text>
@@ -21,14 +21,19 @@ const BlogPostForm = () => {
       />
       <Button
         title='Save Post'
-        // onPress={() => {
-        //   addBlogPost(title, content, () => {
-        //     navigation.navigate('Index');
-        //   });
-        // }}
+        onPress={() => {
+          onSubmit(title, content);
+        }}
       />
     </View>
   );
+};
+
+BlogPostForm.defaultProps = {
+  initialValues: {
+    title: '',
+    content: '',
+  },
 };
 
 const styles = StyleSheet.create({
